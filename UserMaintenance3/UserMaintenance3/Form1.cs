@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace UserMaintenance3
         PortfolioEntities context = new PortfolioEntities();
         List<Tick> Ticks;
         List<PortfolioItem> Portfolio = new List<PortfolioItem>();
+        private DateTime date;
 
         public Form1()
         {
@@ -43,19 +45,11 @@ namespace UserMaintenance3
                                         .ToList();
             MessageBox.Show(nyereségekRendezve[nyereségekRendezve.Count() / 5].ToString());
         }
-    }
 
-        private void CreatePortfolio()
+        private decimal GetPortfolioValue(DateTime dateTime)
         {
-            Portfolio.Add(new PortfolioItem() { Index = "OTP", Volume = 10 });
-            Portfolio.Add(new PortfolioItem() { Index = "ZWACK", Volume = 10 });
-            Portfolio.Add(new PortfolioItem() { Index = "ELMU", Volume = 10 });
-
-            dataGridView2.DataSource = Portfolio;
-        }
-
-        private decimal GetPortfolioValue(DateTime date)
-        {
+         
+            
             decimal value = 0;
             foreach (var item in Portfolio)
             {
@@ -69,13 +63,36 @@ namespace UserMaintenance3
             return value;
         }
 
-        
-
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void CreatePortfolio()
         {
+            
+            Portfolio.Add(new PortfolioItem() { Index = "OTP", Volume = 10 });
+            Portfolio.Add(new PortfolioItem() { Index = "ZWACK", Volume = 10 });
+            Portfolio.Add(new PortfolioItem() { Index = "ELMU", Volume = 10 });
 
+            dataGridView2.DataSource = Portfolio;
         }
     }
+
+
+
+    private void SaveToFile()
+    {
+        SaveFileDialog sf = new SaveFileDialog();
+        sf.Filter = "Text files (*.txt)|All files (*.*)|*.*";
+        if (sf.ShowDialog() == DialogResult.OK)
+        {
+            using (StreamWriter sw = new StreamWriter(sf.FileName))
+            {
+                sw.WriteLine("Időszak\tNyereség");
+                for (int i = 0; i < Nyereségek.Count; i++)
+                {
+                    sw.WriteLine((i + 1).ToString() + "\t" + Nyereségek[i]);
+                }
+            }
+        }
+    }
+
+    }
   
-}
+
