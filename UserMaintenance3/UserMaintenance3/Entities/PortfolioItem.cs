@@ -10,5 +10,8 @@ namespace UserMaintenance3.Entities
     {
         public string Index { get; set; }
         public decimal Volume { get; set; }
+
+
+
     }
 }
