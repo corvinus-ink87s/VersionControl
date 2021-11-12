@@ -9,7 +9,7 @@ using santafactory.Abstractions;
 
 namespace santafactory.Entities
 {
-    public class Ball : Toy
+    public class Toy : Abstractions.Toy
     {
       /*  public Ball()
         {
