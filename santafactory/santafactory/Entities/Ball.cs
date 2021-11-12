@@ -25,7 +25,7 @@ namespace santafactory.Entities
 
         private void DrawImage(Graphics g)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
             g.FillEllipse(new SolidBrush(Color.Blue), 0, 0, Width, Height);
         }
 
