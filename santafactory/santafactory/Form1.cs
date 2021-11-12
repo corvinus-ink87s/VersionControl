@@ -22,8 +22,11 @@ namespace santafactory
         public IToyFactory BallFactory
         {
             get { return _ToyFactory; }
-            set { _ToyFactory = value; }
+            set { _ToyFactory = value; displayNext(); }
         }
+
+        internal PresentFactory Factory { get; private set; }
+        public BallFactory ToyFactory { get; }
 
         public Form1()
         {
@@ -40,9 +43,9 @@ namespace santafactory
         private void createTimer_Tick(object sender, EventArgs e)
         {
             var toy = (Toy)BallFactory.CreateNew();
-            _toys.Add(ball);
-            ball.Left = -ball.Width;
-            mainPanel.Controls.Add(ball);
+            _toys.Add(toy);
+            toy.Left = -toy.Width;
+            mainPanel.Controls.Add(toy);
         }
 
         private void conveyorTimer_Tick(object sender, EventArgs e)
@@ -70,7 +73,10 @@ namespace santafactory
 
         private void btnBall_Click(object sender, EventArgs e)
         {
-            ToyFactory = new BallFactory();
+            ToyFactory = new BallFactory()
+            { 
+            BallColor = btnColor.BackColor
+            };
 
         }
         private void displayNext()
@@ -78,24 +84,34 @@ namespace santafactory
             if (_nextToy != null)
             {
                 this.Controls.Remove(_nextToy);
-
-                _nextToy = IToyFactory.CreateNew();
+            }
+                _nextToy = ToyFactory.CreateNew();
                 _nextToy.Left = lblNext.Left + lblNext.Width;
                 _nextToy.Top = lblNext.Top;
                 this.Controls.Add(_nextToy);
-            }
+            
         }
 
         private void btnColor_Click(object sender, EventArgs e)
         {
             var button = (Button)sender;
             var cd = new ColorDialog();
+            cd.Color = button.BackColor;
 
             if (cd.ShowDialog()!= DialogResult.OK)
             {
                 return;
             }
+            button.BackColor = cd.Color;
+        }
 
+        private void btnPresent_Click(object sender, EventArgs e)
+        {
+            Factory = new PresentFactory
+            {
+                RibbonColor = colorRibbon.BackColor,
+                BoxColor = colorBox.BackColor,
+            };
         }
     }
 }

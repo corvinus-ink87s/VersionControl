@@ -12,7 +12,7 @@ namespace santafactory.Entities
         public Abstractions.Toy CreateNew()
         {
 
-            return new Toy();
+           return new Toy();
         }
     }
 }
