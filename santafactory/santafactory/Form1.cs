@@ -61,8 +61,6 @@ namespace santafactory
                 mainPanel.Controls.Remove(oldestBall);
                 _toys.Remove(oldestBall);
             }
-
-
         }
 
         private void btnCar_Click(object sender, EventArgs e)
@@ -86,6 +84,18 @@ namespace santafactory
                 _nextToy.Top = lblNext.Top;
                 this.Controls.Add(_nextToy);
             }
+        }
+
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var cd = new ColorDialog();
+
+            if (cd.ShowDialog()!= DialogResult.OK)
+            {
+                return;
+            }
+
         }
     }
 }

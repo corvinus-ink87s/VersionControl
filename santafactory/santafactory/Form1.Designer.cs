@@ -36,6 +36,7 @@ namespace santafactory
             this.btnCar = new System.Windows.Forms.Button();
             this.btnBall = new System.Windows.Forms.Button();
             this.lblNext = new System.Windows.Forms.Label();
+            this.btnColor = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -43,9 +44,9 @@ namespace santafactory
             this.mainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainPanel.Location = new System.Drawing.Point(0, 136);
+            this.mainPanel.Location = new System.Drawing.Point(0, 162);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(799, 290);
+            this.mainPanel.Size = new System.Drawing.Size(799, 264);
             this.mainPanel.TabIndex = 0;
             // 
             // createTimer
@@ -89,11 +90,22 @@ namespace santafactory
             this.lblNext.TabIndex = 3;
             this.lblNext.Text = "Coming Next";
             // 
+            // btnColor
+            // 
+            this.btnColor.BackColor = System.Drawing.Color.Blue;
+            this.btnColor.Location = new System.Drawing.Point(181, 112);
+            this.btnColor.Name = "btnColor";
+            this.btnColor.Size = new System.Drawing.Size(120, 28);
+            this.btnColor.TabIndex = 4;
+            this.btnColor.UseVisualStyleBackColor = false;
+            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnColor);
             this.Controls.Add(this.lblNext);
             this.Controls.Add(this.btnBall);
             this.Controls.Add(this.btnCar);
@@ -114,6 +126,7 @@ namespace santafactory
         private System.Windows.Forms.Button btnCar;
         private System.Windows.Forms.Button btnBall;
         private System.Windows.Forms.Label lblNext;
+        private System.Windows.Forms.Button btnColor;
     }
 }
 
