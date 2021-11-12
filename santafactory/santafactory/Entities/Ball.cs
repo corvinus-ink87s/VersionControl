@@ -5,12 +5,13 @@ using System.Windows.Forms;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using santafactory.Abstractions;
 
 namespace santafactory.Entities
 {
-    public class Ball : Label 
+    public class Ball : Toy
     {
-        public Ball()
+      /*  public Ball()
         {
             AutoSize = false;
             Width = 50;
@@ -21,18 +22,18 @@ namespace santafactory.Entities
         private void Ball_Paint(object sender, PaintEventArgs e)
         {
             DrawImage(e.Graphics);
-        }
+        } */
 
-        private void DrawImage(Graphics g)
+        protected override void DrawImage(Graphics g)
         {
             //throw new NotImplementedException();
             g.FillEllipse(new SolidBrush(Color.Blue), 0, 0, Width, Height);
         }
 
-        public void MoveBall()
+       /* public void MoveBall()
         {
             Left += 1;
-        }
+        }*/
 
     }
 }

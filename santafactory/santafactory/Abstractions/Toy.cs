@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace santafactory.Abstractions
 {
-    public class Toy : Label 
+    public abstract class Toy : Label 
     {
         public Toy()
         {
@@ -23,11 +23,11 @@ namespace santafactory.Abstractions
             DrawImage(e.Graphics);
         }
 
-        private void DrawImage(Graphics g)
-        {
+        protected abstract void DrawImage(Graphics g);
+        
             //throw new NotImplementedException();
-            g.FillEllipse(new SolidBrush(Color.Blue), 0, 0, Width, Height);
-        }
+           // g.FillEllipse(new SolidBrush(Color.Blue), 0, 0, Width, Height);
+        
 
         public void MoveToy()
         {

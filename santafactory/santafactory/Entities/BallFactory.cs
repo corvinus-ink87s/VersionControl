@@ -10,6 +10,7 @@ namespace santafactory.Entities
     {
         public Ball CreateNew()
         {
+
             return new Ball();
         }
     }
