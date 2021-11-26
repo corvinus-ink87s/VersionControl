@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using System;
 using System.Activities;
 using System.Collections.Generic;
@@ -58,18 +59,28 @@ namespace UnitTestExample.Test
         public void TestRegisterHappyPath(string email, string password)
         {
             // arrange
+            var accounManagerMock = new Mock<IAccountManager>(MockBehavior.Strict);
+            accountManagersMock
+                .Setup(m => m.CreateAccount(It.IsAny<Account>()));
+                .Returns<Account>(a => a);
             var accountController = new AccountController();
+            accountController.AccountManager = accounManagerMock.Object;
 
             //act
             var result = accountController.Register(email, password);
+           // accountController.AccountManager.Accounts.Contains(result);
 
             //assert
             Assert.AreEqual(email, result.Email);
             Assert.AreEqual(password, result.Password);
             Assert.AreEqual(Guid.Empty, result.ID);
+            accounManagerMock.Verify(m => m.CreateAccount(result), Times.Once);
         }
 
-
+        private void Returns<T>(Func<object, object> p)
+        {
+            throw new NotImplementedException();
+        }
 
         [
             Test,
@@ -89,7 +100,7 @@ namespace UnitTestExample.Test
             try
             {
                 accountController.Register(email, password);
-
+                Assert.Fail();
             }
             catch (Exception ex)
             {
