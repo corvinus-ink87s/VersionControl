@@ -7,24 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WorldsHardestGame;
 
 namespace _10.het
 {
-    public partial class Form1 : Form
+    public partial class UserControl1 : UserControl
     {
-        GameController gc = new GameController();
-        GameArea ga;
-
-        public Form1()
+        public UserControl1()
         {
             InitializeComponent();
-
-            ga = gc.ActivateDisplay();
-            this.Controls.Add(ga);
-
-            gc.AddPlayer();
-            gc.Start(true);
         }
     }
 }
